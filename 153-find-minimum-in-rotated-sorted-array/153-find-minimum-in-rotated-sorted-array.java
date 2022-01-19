@@ -7,6 +7,6 @@ class Solution {
             if(nums[mid] < nums[right]) right = mid;
             else left = mid + 1;
         }
-        return nums[left-1];
+        return nums[left - 1];
     }
 }
