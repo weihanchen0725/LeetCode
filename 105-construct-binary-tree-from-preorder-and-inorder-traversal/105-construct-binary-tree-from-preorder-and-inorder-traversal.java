@@ -20,11 +20,11 @@ class Solution {
     }
     public TreeNode treeBuilder(int[] preorder, int[] inorder, int max){
         if(inIndex == inorder.length || inorder[inIndex] == max) return null;
-        TreeNode root = new TreeNode(preorder[preIndex]);
+        TreeNode node = new TreeNode(preorder[preIndex]);
         preIndex++;
-        root.left = treeBuilder(preorder, inorder, root.val);
+        node.left = treeBuilder(preorder, inorder, node.val);
         inIndex++;
-        root.right = treeBuilder(preorder, inorder, max);
-        return root;
+        node.right = treeBuilder(preorder, inorder, max);
+        return node;
     }
 }
