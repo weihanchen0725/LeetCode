@@ -29,11 +29,14 @@ class Solution {
             for(TreeNode leftTree : leftSubTrees){
                 for(TreeNode rightTree : rightSubTrees){
                     TreeNode node = new TreeNode(rootValue);
-                    node.left = leftTree;
-                    node.right = rightTree;
+                    if(leftTree != null) node.left = leftTree;
+                    if(rightTree != null) node.right = rightTree;
                     trees.add(node);
                 }
+                
             }
+            
+            
         }
         return trees;
     }
