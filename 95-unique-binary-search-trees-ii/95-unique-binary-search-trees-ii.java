@@ -23,15 +23,15 @@ class Solution {
             trees.add(null);
             return trees;
         }
-        for(int treeValue = start; treeValue <= end; treeValue++){
-            List<TreeNode> leftSubTrees = generate(start, treeValue-1);
-            List<TreeNode> rightSubTrees = generate(treeValue+1, end);
+        for(int rootValue = start; rootValue <= end; rootValue++){
+            List<TreeNode> leftSubTrees = generate(start, rootValue-1);
+            List<TreeNode> rightSubTrees = generate(rootValue+1, end);
             for(TreeNode leftTree : leftSubTrees){
                 for(TreeNode rightTree : rightSubTrees){
-                    TreeNode root = new TreeNode(treeValue);
-                    root.left = leftTree;
-                    root.right = rightTree;
-                    trees.add(root);
+                    TreeNode node = new TreeNode(rootValue);
+                    node.left = leftTree;
+                    node.right = rightTree;
+                    trees.add(node);
                 }
             }
         }
