@@ -26,17 +26,14 @@ class Solution {
         for(int rootValue = start; rootValue <= end; rootValue++){
             List<TreeNode> leftSubTrees = generate(start, rootValue-1);
             List<TreeNode> rightSubTrees = generate(rootValue+1, end);
-            for(TreeNode leftTree : leftSubTrees){
-                for(TreeNode rightTree : rightSubTrees){
+            for(TreeNode leftTrees : leftSubTrees){
+                for(TreeNode rightTrees : rightSubTrees){
                     TreeNode node = new TreeNode(rootValue);
-                    if(leftTree != null) node.left = leftTree;
-                    if(rightTree != null) node.right = rightTree;
+                    node.left = leftTrees;
+                    node.right = rightTrees;
                     trees.add(node);
                 }
-                
             }
-            
-            
         }
         return trees;
     }
