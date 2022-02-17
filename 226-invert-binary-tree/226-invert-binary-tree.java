@@ -19,7 +19,7 @@ class Solution {
         invert(root);
         return root;
     }
-    public void invert(TreeNode  node){
+    public void invert(TreeNode node){
         if(node == null) return ;
         TreeNode tempNode = node.left;
         node.left = node.right;
