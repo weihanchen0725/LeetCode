@@ -21,7 +21,8 @@ class Solution {
             if(root.left.left == null && root.left.right == null) ans += root.left.val;
             else ans += sumOfLeftLeaves(root.left);
         }
-        ans += sumOfLeftLeaves(root.right);
+        
+            ans += sumOfLeftLeaves(root.right);
         return ans;
     }
 }
