@@ -22,7 +22,7 @@ class Solution {
             else ans += sumOfLeftLeaves(root.left);
         }
         
-            ans += sumOfLeftLeaves(root.right);
+        ans += sumOfLeftLeaves(root.right);
         return ans;
     }
 }
