@@ -22,6 +22,7 @@ class Solution {
             root = que.poll();
             if(root.right != null) que.offer(root.right);
             if(root.left != null) que.offer(root.left);
+            
         }
         return root.val;
     }
