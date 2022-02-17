@@ -26,6 +26,7 @@ class Solution {
                 if(node.left == null && node.right == null) return count;
                 if(node.left != null) que.offer(node.left);
                 if(node.right != null) que.offer(node.right);
+                
             }
             count++;
         }
