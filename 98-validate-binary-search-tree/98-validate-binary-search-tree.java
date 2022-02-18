@@ -18,10 +18,10 @@ class Solution {
         if(root == null) return true;
         return checkValid(root, null, null);
     }
-    public boolean checkValid(TreeNode node, Integer min, Integer max){
-        if(node == null) return true;
-        if(min != null && node.val <= min) return false;
-        if(max != null && node.val >= max) return false;
-        return checkValid(node.left, min, node.val) && checkValid(node.right, node.val, max);
+    public boolean checkValid(TreeNode root, Integer min, Integer max){
+        if(root == null) return true;
+        if(min != null && root.val <= min) return false;
+        if(max != null && root.val >= max) return false;
+        return checkValid(root.left, min, root.val) && checkValid(root.right, root.val, max);
     }
 }
