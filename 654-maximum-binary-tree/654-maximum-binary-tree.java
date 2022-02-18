@@ -18,8 +18,7 @@ class Solution {
         Deque<TreeNode> stack = new LinkedList<>();
         for(int index = 0; index < nums.length; index++){
             TreeNode current = new TreeNode(nums[index]);
-            while(!stack.isEmpty() && stack.peek().val < nums[index])
-                current.left = stack.pop();
+            while(!stack.isEmpty() && stack.peek().val < current.val) current.left = stack.pop();
             if(!stack.isEmpty()) stack.peek().right = current;
             stack.push(current);
         }
