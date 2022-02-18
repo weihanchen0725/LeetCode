@@ -17,10 +17,10 @@ class Solution {
     public TreeNode constructMaximumBinaryTree(int[] nums) {
         Deque<TreeNode> stack = new LinkedList<>();
         for(int index = 0; index < nums.length; index++){
-            TreeNode current = new TreeNode(nums[index]);
-            while(!stack.isEmpty() && stack.peek().val < current.val) current.left = stack.pop();
-            if(!stack.isEmpty()) stack.peek().right = current;
-            stack.push(current);
+            TreeNode node = new TreeNode(nums[index]);
+            while(!stack.isEmpty() && stack.peek().val < node.val) node.left = stack.poll();
+            if(!stack.isEmpty()) stack.peek().right = node;
+            stack.push(node);
         }
         return stack.isEmpty() ? null : stack.removeLast();
     }
