@@ -15,17 +15,15 @@
  */
 class Solution {
     int sum = 0;
-    public void traversal(TreeNode root) {
-        if(root == null) {
-            return;
-        }
-        traversal(root.right);
-        sum += root.val;
-        root.val = sum;
-        traversal(root.left);
-    }
     public TreeNode convertBST(TreeNode root) {
         traversal(root);
         return root;
+    }
+    public void traversal(TreeNode node){
+        if(node == null) return ;
+        traversal(node.right);
+        node.val += sum;
+        sum = node.val;
+        traversal(node.left);
     }
 }
