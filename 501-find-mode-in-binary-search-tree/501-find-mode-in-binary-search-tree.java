@@ -13,38 +13,34 @@
  *     }
  * }
  */
-public class Solution {
-    Integer prev = null;
+class Solution {
+    int max = Integer.MIN_VALUE;
     int count = 1;
-    int max = 0;
+    Integer prev = null;
     public int[] findMode(TreeNode root) {
-        if (root == null) return new int[0];
-        
         List<Integer> list = new ArrayList<>();
-        traverse(root, list);
-        
-        int[] res = new int[list.size()];
-        for (int i = 0; i < list.size(); ++i) res[i] = list.get(i);
-        return res;
-    }
-    
-    private void traverse(TreeNode root, List<Integer> list) {
-        if (root == null) return;
-        traverse(root.left, list);
-        if (prev != null) {
-            if (root.val == prev)
-                count++;
-            else
-                count = 1;
+        helper(root, list);
+        int[] results = new int[list.size()];
+        for(int index = 0; index < results.length; index++){
+            results[index] = list.get(index);
         }
-        if (count > max) {
+        return results;
+    }
+    public void helper(TreeNode node, List<Integer> list){
+        if(node == null) return ;
+        helper(node.left, list);
+        if(prev != null){
+            if(prev == node.val) count++;
+            else count = 1;
+        }
+        if(count > max){
             max = count;
             list.clear();
-            list.add(root.val);
-        } else if (count == max) {
-            list.add(root.val);
+            list.add(node.val);
+        }else if(count == max){
+            list.add(node.val);
         }
-        prev = root.val;
-        traverse(root.right, list);
+        prev = node.val;
+        helper(node.right, list);
     }
 }
