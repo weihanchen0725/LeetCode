@@ -14,15 +14,18 @@
  * }
  */
 class Solution {
+    int sum = 0;
+    public void traversal(TreeNode root) {
+        if(root == null) {
+            return;
+        }
+        traversal(root.right);
+        sum += root.val;
+        root.val = sum;
+        traversal(root.left);
+    }
     public TreeNode convertBST(TreeNode root) {
-    dfs(root, 0);
-    return root;
-}
-    public int dfs(TreeNode root, int val) {
-    if(root == null) return val;
-    int right = dfs(root.right, val);
-    int left = dfs(root.left, root.val + right);
-    root.val = root.val + right;
-    return left;
+        traversal(root);
+        return root;
     }
 }
