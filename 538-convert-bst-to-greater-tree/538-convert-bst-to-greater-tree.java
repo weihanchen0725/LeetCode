@@ -16,14 +16,14 @@
 class Solution {
     int sum = 0;
     public TreeNode convertBST(TreeNode root) {
-        traversal(root);
-        return root;
+        return convert(root);
     }
-    public void traversal(TreeNode node){
-        if(node == null) return ;
-        traversal(node.right);
-        node.val += sum;
-        sum = node.val;
-        traversal(node.left);
+    public TreeNode convert(TreeNode node){
+        if(node == null) return null;
+        convert(node.right);
+        sum += node.val;
+        node.val = sum;
+        convert(node.left);
+        return node;
     }
 }
