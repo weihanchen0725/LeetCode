@@ -22,9 +22,9 @@ class Solution {
     public TreeNode helper(int[] nums, int left, int right){
         if(left > right) return null;
         int mid = left + (right - left) / 2;
-        TreeNode currentNode = new TreeNode(nums[mid]);
-        currentNode.left = helper(nums, left, mid-1);
-        currentNode.right = helper(nums, mid+1, right);
-        return currentNode;
+        TreeNode node = new TreeNode(nums[mid]);
+        node.left = helper(nums, left, mid-1);
+        node.right = helper(nums, mid+1, right);
+        return node;
     }
 }
