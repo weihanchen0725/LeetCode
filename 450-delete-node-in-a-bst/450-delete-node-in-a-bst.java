@@ -19,16 +19,18 @@ class Solution {
         if(root.val == key){
             if(root.left == null) return root.right;
             if(root.right == null) return root.left;
-            TreeNode min = root.right;
-            while(min.left != null) min = min.left;
-            root.right = deleteNode(root.right, min.val);
-            min.left = root.left;
-            min.right = root.right;
-            root = min;
-        }else if(root.val < key){
-            root.right = deleteNode(root.right, key);
-        }else{
+            TreeNode node = root.right;
+            while(node.left != null) node = node.left;
+            root.right = deleteNode(root.right, node.val);
+            node.left = root.left;
+            node.right = root.right;
+            root = node;
+        }else if(root.val > key){
             root.left = deleteNode(root.left, key);
+        }else{
+            
+            root.right = deleteNode(root.right, key);
+            
         }
         return root;
     }
