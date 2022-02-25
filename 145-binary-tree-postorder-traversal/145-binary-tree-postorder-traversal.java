@@ -17,13 +17,13 @@ class Solution {
     public List<Integer> postorderTraversal(TreeNode root) {
         List<Integer> results = new ArrayList<>();
         if(root == null) return results;
-        postorder(results, root);
+        postorder(root, results);
         return results;
     }
-    public void postorder(List<Integer> results, TreeNode root){
+    public void postorder(TreeNode root, List<Integer> results){
         if(root == null) return ;
-        postorder(results, root.left);
-        postorder(results, root.right);
+        postorder(root.left, results);
+        postorder(root.right, results);
         results.add(root.val);
     }
 }
