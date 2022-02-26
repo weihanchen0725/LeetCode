@@ -21,7 +21,7 @@ class Solution {
     }
     public void helper(TreeNode node, List<List<Integer>> results, int level){
         if(node == null) return ;
-        if(results.size() <= level) results.add(0, new ArrayList<>());
+        if(results.size() <= level) results.add(0, new ArrayList<Integer>());
         helper(node.left, results, level+1);
         helper(node.right, results, level+1);
         results.get(results.size()-level-1).add(node.val);
