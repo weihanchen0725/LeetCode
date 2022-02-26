@@ -20,10 +20,10 @@ class Solution {
         preorder(root, results);
         return results;
     }
-    public void preorder(TreeNode root, List<Integer> results){
-        if(root == null) return ;
-        results.add(root.val);
-        preorder(root.left, results);
-        preorder(root.right, results);
+    public void preorder(TreeNode node, List<Integer> results){
+        if(node == null) return ;
+        results.add(node.val);
+        preorder(node.left, results);
+        preorder(node.right, results);
     }
 }
