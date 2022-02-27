@@ -22,7 +22,7 @@ class Solution {
     }
     public void helper(TreeNode root, List<List<Integer>> results, int level){
         if(root == null) return ;
-        if(results.size() <= level) results.add(0, new ArrayList<Integer>());
+        if(results.size() <= level) results.add(0, new ArrayList<>());
         helper(root.left, results, level+1);
         helper(root.right, results, level+1);
         results.get(results.size()-level-1).add(root.val);
