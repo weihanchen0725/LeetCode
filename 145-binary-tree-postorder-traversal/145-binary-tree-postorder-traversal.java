@@ -20,10 +20,10 @@ class Solution {
         postorder(root, results);
         return results;
     }
-    public void postorder(TreeNode root, List<Integer> results){
-        if(root == null) return ;
-        postorder(root.left, results);
-        postorder(root.right, results);
-        results.add(root.val);
+    public void postorder(TreeNode node, List<Integer> results){
+        if(node == null) return ;
+        postorder(node.left, results);
+        postorder(node.right, results);
+        results.add(node.val);
     }
 }
