@@ -26,7 +26,7 @@ class Solution {
         List<Integer> temp = results.get(level);
         if(level % 2 == 0) temp.add(node.val);
         else temp.add(0, node.val);
-        zigzag(node.left, results, level+1);
-        zigzag(node.right, results, level+1);
+        if(node.left != null) zigzag(node.left, results, level+1);
+        if(node.right != null) zigzag(node.right, results, level+1);
     }
 }
