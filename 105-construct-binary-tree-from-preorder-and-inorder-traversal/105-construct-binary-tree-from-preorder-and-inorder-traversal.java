@@ -14,17 +14,16 @@
  * }
  */
 class Solution {
-    int preorderIndex, inorderIndex;
+    int preorderIndex = 0, inorderIndex = 0;
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        return builder(preorder, inorder, Integer.MAX_VALUE);
+        return build(preorder, inorder, Integer.MAX_VALUE);
     }
-    public TreeNode builder(int[] preorder, int[] inorder, int max){
+    public TreeNode build(int[] preorder, int[] inorder, int max){
         if(inorderIndex == inorder.length || inorder[inorderIndex] == max) return null;
-        TreeNode node = new TreeNode(preorder[preorderIndex]);
-        preorderIndex++;
-        node.left = builder(preorder, inorder, node.val);
+        TreeNode node = new TreeNode(preorder[preorderIndex++]);
+        node.left = build(preorder, inorder, node.val);
         inorderIndex++;
-        node.right = builder(preorder, inorder, max);
+        node.right = build(preorder, inorder, max);
         return node;
     }
 }
