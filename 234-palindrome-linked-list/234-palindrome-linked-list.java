@@ -26,13 +26,13 @@ class Solution {
         return true;
     }
     public ListNode reverse(ListNode node){
-        ListNode prev = null;
+        ListNode previous = null;
         while(node != null){
             ListNode next = node.next;
-            node.next = prev;
-            prev = node;
+            node.next = previous;
+            previous = node;
             node = next;
         }
-        return prev;
+        return previous;
     }
 }
