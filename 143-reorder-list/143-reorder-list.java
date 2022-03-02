@@ -32,6 +32,5 @@ class Solution {
             slow = fast.next;
             fast = middle.next;
         }
-        
     }
 }
