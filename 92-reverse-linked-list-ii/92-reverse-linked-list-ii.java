@@ -22,10 +22,10 @@ class Solution {
                 temp2 = head;
             }
             if(count > left && count < right){
-                ListNode temp = head.next;
+                ListNode next = head.next;
                 head.next = previous;
                 previous = head;
-                head = temp;
+                head = next;
                 continue;
             }
             if(count == right){
