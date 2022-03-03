@@ -11,7 +11,7 @@
 class Solution {
     public ListNode sortList(ListNode head) {
         if(head == null || head.next == null) return head;
-        ListNode previous = new ListNode(), slow = head, fast = head;
+        ListNode previous = null, slow = head, fast = head;
         while(fast != null && fast.next != null){
             previous = slow;
             slow = slow.next;
