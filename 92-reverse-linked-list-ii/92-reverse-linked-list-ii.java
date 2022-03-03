@@ -34,8 +34,8 @@ class Solution {
                 temp1.next = head;
                 break;
             }
-            head = head.next;
             previous = previous.next;
+            head = head.next;
         }
         return node.next;
     }
