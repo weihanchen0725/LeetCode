@@ -10,23 +10,21 @@
  */
 class Solution {
     public ListNode rotateRight(ListNode head, int k) {
-        ListNode dummyHead = new ListNode(-1), slow = dummyHead, fast = dummyHead;
-        dummyHead.next = head;
-        
-        int len = 0;
-        while(fast.next != null){   // fast REACH tail && Count len
-            fast = fast.next; len++;
+        ListNode node = new ListNode(), slow = node, fast = node;
+        node.next = head;
+        int length = 0;
+        while(fast.next != null){
+            fast = fast.next;
+            length++;
         }
-        if(len == 0) return null;   // CHECK null
-        
-        k %= len;
-        for(int i=0; i<len-k; i++)  // slow REACH before the rotated point 
+        if(length == 0) return null;
+        k %= length;
+        for(int index = 0; index < length-k; index++){
             slow = slow.next;
-        
-        fast.next = dummyHead.next;      // CONNECT
-        dummyHead.next = slow.next;
+        }
+        fast.next = node.next;
+        node.next = slow.next;
         slow.next = null;
-        
-        return dummyHead.next; 
+        return node.next;
     }
 }
