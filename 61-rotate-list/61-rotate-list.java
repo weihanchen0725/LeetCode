@@ -17,7 +17,7 @@ class Solution {
             fast = fast.next;
             length++;
         }
-        if(length == 0) return head;
+        if(length == 0) return null;
         k %= length;
         for(int index = 0; index < length-k; index++){
             slow = slow.next;
