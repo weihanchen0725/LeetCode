@@ -8,27 +8,25 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-public class Solution {
- 
-  public ListNode rotateRight(ListNode head, int k) {
-        if(head == null || head.next == null || k == 0){
-            return head;
+class Solution {
+    public ListNode rotateRight(ListNode head, int k) {
+        ListNode dummyHead = new ListNode(-1), slow = dummyHead, fast = dummyHead;
+        dummyHead.next = head;
+        
+        int len = 0;
+        while(fast.next != null){   // fast REACH tail && Count len
+            fast = fast.next; len++;
         }
-        ListNode end = head;
-        ListNode newhead = head;
-        ListNode newend = head;
-        int listLength = 1;
-        while(end.next != null){
-            end = end.next;
-            listLength++;
-        }
-        end.next = head; // make it a circle here
-        for(int i = 0; i < listLength - (k % listLength); i++){
-            newend = newhead;
-            newhead = newhead.next;   
-        }
-        //end.next = head; when i put it here rather than the place above, it cannot pass, i don't know why. can you help me? why should we make a circle?
-        newend.next = null;
-        return newhead;
+        if(len == 0) return null;   // CHECK null
+        
+        k %= len;
+        for(int i=0; i<len-k; i++)  // slow REACH before the rotated point 
+            slow = slow.next;
+        
+        fast.next = dummyHead.next;      // CONNECT
+        dummyHead.next = slow.next;
+        slow.next = null;
+        
+        return dummyHead.next; 
     }
 }
