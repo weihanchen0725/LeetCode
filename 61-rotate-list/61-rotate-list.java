@@ -17,11 +17,9 @@ class Solution {
             fast = fast.next;
             length++;
         }
-        if(length == 0) return null;
+        if(length == 0) return head;
         k %= length;
-        for(int index = 0; index < length-k; index++){
-            slow = slow.next;
-        }
+        for(int index = 0; index < length-k; index++) slow = slow.next;
         fast.next = node.next;
         node.next = slow.next;
         slow.next = null;
