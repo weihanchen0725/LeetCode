@@ -13,6 +13,7 @@ class Solution {
         ListNode smallHead = new ListNode(), smallTail = smallHead;
         ListNode bigHead = new ListNode(), bigTail = bigHead;
         ListNode current = head;
+        int count = 0;
         while(current != null){
             ListNode temp = current.next;
             if(current.val < x){
