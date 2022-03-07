@@ -23,8 +23,8 @@ class Solution {
         return merge(l1, l2);
     }
     public ListNode merge(ListNode l1, ListNode l2){
-        ListNode results = new ListNode();
-        ListNode l3 = results;
+        ListNode result = new ListNode();
+        ListNode l3 = result;
         while(l1 != null && l2 != null){
             if(l1.val < l2.val){
                 l3.next = l1;
@@ -37,6 +37,6 @@ class Solution {
         }
         if(l1 != null) l3.next = l1;
         if(l2 != null) l3.next = l2;
-        return results.next;
+        return result.next;
     }
 }
