@@ -24,6 +24,7 @@ class Solution {
                 previous.next = current.next;
                 current.next = next;
             }
+            
         }
         return node.next;
     }
