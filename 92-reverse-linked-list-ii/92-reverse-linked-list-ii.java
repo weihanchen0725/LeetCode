@@ -20,15 +20,13 @@ class Solution {
             if(count == left){
                 temp1 = previous;
                 temp2 = head;
-            }
-            if(count > left && count < right){
+            }else if(count > left && count < right){
                 ListNode temp = head.next;
                 head.next = previous;
                 previous = head;
                 head = temp;
                 continue;
-            }
-            if(count == right){
+            }else if(count == right){
                 temp2.next = head.next;
                 head.next = previous;
                 temp1.next = head;
