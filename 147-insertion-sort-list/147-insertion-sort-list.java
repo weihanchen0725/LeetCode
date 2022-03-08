@@ -12,15 +12,13 @@ class Solution {
     public ListNode insertionSortList(ListNode head) {
         ListNode node = new ListNode();
         node.next = head;
-        ListNode current = head, previous = node;
+        ListNode previous = node, current = head;
         while(current != null && current.next != null){
             if(current.val < current.next.val){
                 current = current.next;
             }else{
                 previous = node;
-                while(previous.next.val < current.next.val){
-                    previous = previous.next;
-                }
+                while(previous.next.val < current.next.val) previous = previous.next;
                 ListNode next = current.next.next;
                 current.next.next = previous.next;
                 previous.next = current.next;
