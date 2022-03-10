@@ -1,11 +1,9 @@
 class Solution {
     public char findTheDifference(String s, String t) {
         int sum = 0;
-        char[] sArr = s.toCharArray();
-        char[] tArr = t.toCharArray();
-        for(int index=0; index<sArr.length; index++)
-            sum += tArr[index] - sArr[index];
-        sum += tArr[tArr.length-1];
+        for(int index = 0; index < s.length(); index++)
+            sum += t.charAt(index) - s.charAt(index);
+        sum += t.charAt(t.length()-1);
         return (char)sum;
     }
 }
