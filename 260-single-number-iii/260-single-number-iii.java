@@ -5,7 +5,7 @@ class Solution {
             bitmask ^= num;
         int x = 0, diff = bitmask & (-bitmask);
         for(int num : nums)
-            if((num & diff) != 0)
+            if((diff & num) != 0)
                 x ^= num;
         return new int[]{x, bitmask ^ x};
     }
