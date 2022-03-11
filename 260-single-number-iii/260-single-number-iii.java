@@ -1,27 +1,21 @@
-public class Solution {
+class Solution {
     public int[] singleNumber(int[] nums) {
-        // Pass 1 : 
-        // Get the XOR of the two numbers we need to find
-        int diff = 0;
-        for (int num : nums) {
-            diff ^= num;
-        }
-        // Get its last set bit
-        diff &= -diff;
+        // bit operation
+        // need to understand and remember
+        // not easy to understand
+        // hash table also works
         
-        // Pass 2 :
-        int[] rets = {0, 0}; // this array stores the two numbers we will return
-        for (int num : nums)
-        {
-            if ((num & diff) == 0) // the bit is not set
-            {
-                rets[0] ^= num;
-            }
-            else // the bit is set
-            {
-                rets[1] ^= num;
-            }
-        }
-        return rets;
+        // difference between two numbers (x and y) which were seen only once
+        int bitmask = 0;
+        for (int num : nums) bitmask ^= num;
+
+        // rightmost 1-bit diff between x and y
+        int diff = bitmask & (-bitmask);
+
+        int x = 0;
+        // bitmask which will contain only x
+        for (int num : nums) if ((num & diff) != 0) x ^= num;
+
+        return new int[]{x, bitmask^x};
     }
 }
