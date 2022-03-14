@@ -1,12 +1,12 @@
 class Solution {
     public int[] singleNumber(int[] nums) {
-        int mask = 0;
+        int bitmask = 0;
         for(int num : nums)
-            mask ^= num;
-        int x = 0, diff = mask&(-mask);
+            bitmask ^= num;
+        int x = 0, diff = bitmask&(-bitmask);
         for(int num : nums)
-            if( (num & diff) != 0)
+            if((num&diff) != 0)
                 x ^= num;
-        return new int[]{x, mask ^ x};
+        return new int[]{x, bitmask^x};
     }
 }
