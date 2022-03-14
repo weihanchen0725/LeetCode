@@ -1,18 +1,18 @@
 class Solution {
     public int singleNumber(int[] nums) {
-    int ans = 0;
-    for(int i = 0; i < 32; i++) {
-        int sum = 0;
-        for(int j = 0; j < nums.length; j++) {
-            if(((nums[j] >> i) & 1) == 1) {
-                sum++;
-                sum %= 3;
-            }
+        // x: 1100
+        // ~y: 0011
+        // if x and y are the same, then x & ~y == 0
+        
+        
+        int seenOnce = 0;
+        int seenTwice = 0;
+        
+        for (int i = 0; i < nums.length; i++) {
+            seenOnce = (~seenTwice) & (seenOnce ^ nums[i]);
+            seenTwice = (~seenOnce) & (seenTwice ^ nums[i]);            
         }
-        if(sum != 0) {
-            ans |= sum << i;
-        }
+        
+        return seenOnce;
     }
-    return ans;
-}
 }
