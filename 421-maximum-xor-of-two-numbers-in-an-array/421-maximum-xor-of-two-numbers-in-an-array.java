@@ -4,11 +4,12 @@ class Solution {
         for(int index = 31; index >= 0; index--){
             mask = mask | (1 << index);
             HashSet<Integer> set = new HashSet<>();
-            for(int num : nums)
+            for(int num : nums){
                 set.add(num & mask);
+            }
             int temp = max | (1 << index);
-            for(int num : set){
-                if(set.contains(num ^ temp)){
+            for(int prefix : set){
+                if(set.contains(prefix ^ temp)){
                     max = temp;
                     break;
                 }
