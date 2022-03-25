@@ -4,8 +4,8 @@ class Solution {
         while(left < right){
             int minHeight = Math.min(height[left], height[right]);
             water = Math.max(water, minHeight*(right-left));
-            if(left < right && height[right] <= minHeight) right--;
             if(left < right && height[left] <= minHeight) left++;
+            if(left < right && height[right] <= minHeight) right--;
         }
         return water;
     }
