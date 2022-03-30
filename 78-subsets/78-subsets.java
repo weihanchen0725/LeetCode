@@ -10,6 +10,7 @@ class Solution {
             results.add(new ArrayList<>(temp));
             return ;
         }
+        
         helper(nums, temp, results, index+1);
         temp.add(nums[index]);
         helper(nums, temp, results, index+1);
