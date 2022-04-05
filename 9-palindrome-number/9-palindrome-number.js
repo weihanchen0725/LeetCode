@@ -3,18 +3,20 @@
  * @return {boolean}
  */
 var isPalindrome = function(x) {
-    const s = x.toString();
-    if (s.length === 1) {
-        return true;
-    }
-    const start = s[0];
-    const end = s[s.length - 1];
-    if (start !== end) {
+    if(x<0){
         return false;
     }
-    if (s.length === 2) {
-        return true;
+    var flag = true
+    var val = String(x).split("")
+    
+    for(var i=0; i< val.length / 2; i++)
+    {
+        if(val[i] == val[val.length-i-1]){
+            flag = true;
+        }
+        else{
+            return false;
+        }
     }
-    const subStr = s.substring(1, s.length - 1);
-    return isPalindrome(subStr);
+    return flag;
 };
