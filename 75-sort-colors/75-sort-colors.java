@@ -1,13 +1,13 @@
 class Solution {
     public void sortColors(int[] nums) {
-        int length = nums.length, current = 0;
-        int left = 0, right = length - 1;
+        int current = 0, left = 0, right = nums.length - 1;
         while(current <= right){
-            if(nums[current] == 0){
+            int currentValue = nums[current];
+            if(currentValue == 0){
                 swap(nums, left, current);
                 left++;
                 current++;
-            }else if(nums[current] == 2){
+            }else if(currentValue == 2){
                 swap(nums, right, current);
                 right--;
             }else{
@@ -15,9 +15,9 @@ class Solution {
             }
         }
     }
-    private void swap(int[] nums, int index1, int index2){
-        int tempNum = nums[index1];
-        nums[index1] = nums[index2];
-        nums[index2] = tempNum;
+    public void swap(int[] nums, int left, int right){
+        int temp = nums[left];
+        nums[left] = nums[right];
+        nums[right] = temp;
     }
 }
