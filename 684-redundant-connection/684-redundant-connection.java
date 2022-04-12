@@ -1,21 +1,31 @@
 class Solution {
-    public int[] findRedundantConnection(int[][] edges) {
-        int[] parent = new int[2001];
-        for (int i = 0; i < parent.length; i++) parent[i] = i;
+   public int[] findRedundantConnection(int[][] edges) {
+        int[] ret = null;
+        int n = edges.length;
+        List<Set<Integer>> adjList = new ArrayList<>(1001);
+        for(int i=0; i < 1001; i++)
+            adjList.add(new HashSet<>());
         
-        for (int[] edge: edges){
-            int f = edge[0], t = edge[1];
-            if (find(parent, f) == find(parent, t)) return edge;
-            else parent[find(parent, f)] = find(parent, t);
+        for(int[] edge : edges){
+            int u = edge[0], v = edge[1];
+            if(dfs(u, v, 0, adjList)){
+                ret = edge;
+            }else{
+                adjList.get(u).add(v);
+                adjList.get(v).add(u);
+            }
         }
-        
-        return new int[2];
+        return ret;
     }
     
-    private int find(int[] parent, int f) {
-        if (f != parent[f]) {
-          parent[f] = find(parent, parent[f]);  
+    private boolean dfs(int u, int v, int pre, List<Set<Integer>> adjList){
+        if(u == v)
+            return true;
+        for(int w : adjList.get(u)){
+            if(w == pre) continue;
+            boolean ret = dfs(w, v, u, adjList);
+            if(ret) return true;
         }
-        return parent[f];
+        return false;
     }
 }
