@@ -11,10 +11,11 @@ class Solution {
         return count;
     }
     public void dfs(int[][] isConnected, int[] visited, int index){
-        for(int anotherIndex = 0; anotherIndex < isConnected.length; anotherIndex++){
-            if(isConnected[index][anotherIndex] == 1 && visited[anotherIndex] == 0){
-                visited[anotherIndex] = 1;
-                dfs(isConnected, visited, anotherIndex);
+        for(int jIndex = 0; jIndex < isConnected.length; jIndex++){
+            if(isConnected[index][jIndex] == 1 && visited[jIndex] == 0){
+                visited[jIndex] = 1;
+                dfs(isConnected, visited, jIndex);
+                
             }
         }
     }
