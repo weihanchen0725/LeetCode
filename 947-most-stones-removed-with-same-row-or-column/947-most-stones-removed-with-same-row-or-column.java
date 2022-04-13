@@ -1,5 +1,5 @@
 class Solution {
-    Map<Integer, Integer> map = new HashMap<>();
+    HashMap<Integer, Integer> map = new HashMap<>();
     int lands = 0;
     public int removeStones(int[][] stones) {
         for(int index = 0; index < stones.length; index++){
