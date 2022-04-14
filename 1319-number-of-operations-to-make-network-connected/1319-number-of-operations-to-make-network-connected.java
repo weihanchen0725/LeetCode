@@ -1,31 +1,30 @@
 class Solution {
     public int makeConnected(int n, int[][] connections) {
-        if (connections.length < n - 1) return -1; // To connect all nodes need at least n-1 edges
-        int[] parent = new int[n];
-        int[] size = new int[n];
-        for (int i = 0; i < n; i++) {
-            parent[i] = i;
-            size[i] = 1;
+        if(connections.length < n-1) return -1;
+        int[] parent = new int[n], size = new int[n];
+        for(int label = 0; label < n; label++){
+            parent[label] = label;
+            size[label] = 1;
         }
         int components = n;
-        for (int[] c : connections) {
-            int p1 = findParent(parent, c[0]);
-            int p2 = findParent(parent, c[1]);
-            if (p1 != p2) {
-                if (size[p1] < size[p2]) { // Merge small size to large size
-                    size[p2] += size[p1];
-                    parent[p1] = p2;
-                } else {
-                    size[p1] += size[p2];
-                    parent[p2] = p1;
+        for(int[] connection : connections){
+            int parent1 = findParent(parent, connection[0]);
+            int parent2 = findParent(parent, connection[1]);
+            if(parent1 != parent2){
+                if(size[parent1] < size[parent2]){
+                    size[parent2] += size[parent1];
+                    parent[parent1] = parent2;
+                }else{
+                    size[parent1] += size[parent2];
+                    parent[parent2] = parent1;
                 }
                 components--;
             }
         }
-        return components - 1; // Need (components-1) cables to connect components together
+        return components-1;
     }
-    private int findParent(int[] parent, int i) {
-        if (i == parent[i]) return i;
-        return parent[i] = findParent(parent, parent[i]); // Path compression
+    public int findParent(int[] parent, int num){
+        if(num == parent[num]) return num;
+        return parent[num] = findParent(parent, parent[num]);
     }
 }
