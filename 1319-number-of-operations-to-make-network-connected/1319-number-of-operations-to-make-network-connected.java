@@ -8,15 +8,15 @@ class Solution {
         }
         int components = n;
         for(int[] connection : connections){
-            int parent1 = findParent(parent, connection[0]);
-            int parent2 = findParent(parent, connection[1]);
-            if(parent1 != parent2){
-                if(size[parent1] < size[parent2]){
-                    size[parent2] += size[parent1];
-                    parent[parent1] = parent2;
+            int num1 = findParent(parent, connection[0]);
+            int num2 = findParent(parent, connection[1]);
+            if(num1 != num2){
+                if(size[num1] < size[num2]){
+                    size[num2] += size[num1];
+                    parent[num1] = num2;
                 }else{
-                    size[parent1] += size[parent2];
-                    parent[parent2] = parent1;
+                    size[num1] += size[num2];
+                    parent[num2] = num1;
                 }
                 components--;
             }
