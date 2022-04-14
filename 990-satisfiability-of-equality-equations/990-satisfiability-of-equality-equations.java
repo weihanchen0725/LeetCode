@@ -8,7 +8,7 @@ class Solution {
                 dictionary[find(equation.charAt(0)-'a')] = find(equation.charAt(3)-'a');
         for(String equation : equations)
             if(equation.charAt(1) == '!' && find(equation.charAt(0)-'a') == find(equation.charAt(3)-'a'))
-               return false;
+                return false;
         return true;
     }
     public int find(int num){
