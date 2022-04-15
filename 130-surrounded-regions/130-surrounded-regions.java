@@ -1,49 +1,54 @@
 class Solution {
-    private static final int[][] DIRS = { { -1, 0 }, { 0, -1 }, { 0, 1 }, { 1, 0 } };
-    private static final char NON_CAPTURED = '#';
-
     public void solve(char[][] board) {
-        if (board == null) {
-            throw new IllegalArgumentException("Input board is null");
-        }
-        if (board.length == 0 || board[0].length == 0) {
-            return;
-        }
         int m = board.length;
         int n = board[0].length;
-
-        for (int i = 0; i < m; i++) {
-            if (board[i][0] == 'O') {
-                dfsHelper(board, i, 0);
-            }
-
-            if (board[i][n - 1] == 'O') {
-                dfsHelper(board, i, n - 1);
-            }
-        }
-        for (int j = 1; j < n - 1; j++) {
-            if (board[0][j] == 'O') {
-                dfsHelper(board, 0, j);
-            }
-            if (board[m - 1][j] == 'O') {
-                dfsHelper(board, m - 1, j);
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (board[i][j] == 'O' && (i == 0 || i == m - 1 || j == 0 || j == n - 1)) {
+                    
+                        dfs(board, i, j);
+                    
+                }
             }
         }
-
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                board[i][j] = (board[i][j] == NON_CAPTURED) ? 'O' : 'X';
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (board[i][j] != 'Z') {
+                    board[i][j] = 'X';
+                }
+            }
+        }
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (board[i][j] == 'Z') {
+                    board[i][j] = 'O';
+                }
             }
         }
     }
-
-    private void dfsHelper(char[][] board, int x, int y) {
-        if (x < 0 || y < 0 || x >= board.length || y >= board[0].length || board[x][y] != 'O') {
-            return;
+    private void dfs(char[][] board, int i, int j) {
+        // if (i + 1 > m || i - 1 < 0 || j + 1 > n || j - 1 < 0 || board[i][j] != 'O') {
+        //     return;
+        // }
+        // board[i][j] = 'Z';
+        // dfs(board, i + 1, j, m, n);
+        // dfs(board, i - 1, j, m, n);
+        // dfs(board, i, j + 1, m, n);
+        // dfs(board, i, j - 1, m, n);
+        board[i][j] = 'Z';
+        
+        
+        if (i + 1 < board.length && board[i + 1][j] == 'O') {
+            dfs(board, i + 1, j);
         }
-        board[x][y] = NON_CAPTURED;
-        for (int[] d : DIRS) {
-            dfsHelper(board, x + d[0], y + d[1]);
+        if (i - 1 >= 0 && board[i - 1][j] == 'O') {
+            dfs(board, i - 1, j);
+        }
+        if (j + 1 < board[0].length && board[i][j + 1] == 'O') {
+            dfs(board, i, j + 1);
+        }
+        if (j - 1 >= 0 && board[i][j - 1] == 'O') {
+            dfs(board, i, j - 1);
         }
     }
 }
