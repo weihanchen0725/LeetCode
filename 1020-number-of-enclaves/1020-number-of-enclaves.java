@@ -1,30 +1,29 @@
 class Solution {
-    public int numEnclaves(int[][] A) {
-        int result = 0;
-        for(int i = 0; i < A.length; i++) {
-            for(int j = 0; j < A[i].length; j++) {
-                if(i == 0 || j == 0 || i == A.length - 1 || j == A[i].length - 1)
-                    dfs(A, i, j);
+    public int numEnclaves(int[][] grid) {
+        int count = 0;
+        for(int i = 0; i < grid.length; i++){
+            for(int j = 0; j < grid[i].length; j++){
+                if(i==0 || j==0 || i==grid.length-1 || j==grid[i].length-1){
+                    dfs(grid, i, j);
+                }
             }
         }
-        
-        for(int i = 0; i < A.length; i++) {
-            for(int j = 0; j < A[i].length; j++) {
-                if(A[i][j] == 1)
-                    result++;
+        for(int i = 0; i < grid.length; i++){
+            for(int j = 0; j < grid[i].length; j++){
+                if(grid[i][j] == 1){
+                    count++;
+                }
             }
         }
-        
-        return result;
+        return count;
     }
-    
-    public void dfs(int a[][], int i, int j) {
-        if(i >= 0 && i <= a.length - 1 && j >= 0 && j <= a[i].length - 1 && a[i][j] == 1) {
-            a[i][j] = 0;
-            dfs(a, i + 1, j);
-            dfs(a, i - 1, j);
-            dfs(a, i, j + 1);
-            dfs(a, i, j - 1);
+    public void dfs(int[][] grid, int i, int j){
+        if(i>=0 && j>=0 && i<grid.length && j<grid[i].length && grid[i][j] == 1){
+            grid[i][j] = 0;
+            dfs(grid, i+1, j);
+            dfs(grid, i-1, j);
+            dfs(grid, i, j+1);
+            dfs(grid, i, j-1);
         }
     }
 }
