@@ -7,7 +7,7 @@ class Solution {
             results[index] = results[index-1] * nums[index-1];
         }
         int temp = 1;
-        for(int index = length - 2; index >= 0; index--){
+        for(int index = length-2; index >= 0; index--){
             results[index] *= temp * nums[index+1];
             temp *= nums[index+1];
         }
