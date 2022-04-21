@@ -1,9 +1,9 @@
 class Solution {
     public int longestConsecutive(int[] nums) {
-        if(nums.length == 0) return 0;
+        int length = nums.length, count = 1, index = 0, max = 1;
+        if(length == 0) return 0;
         Arrays.sort(nums);
-        int count = 1, max = 1, index = 0;
-        while(index < nums.length-1){
+        while(index < length-1){
             if(nums[index]+1 == nums[index+1]){
                 count++;
                 index++;
@@ -11,11 +11,10 @@ class Solution {
                 index++;
             }else{
                 max = Math.max(max, count);
-                count = 1;
                 index++;
+                count = 1;
             }
         }
-        max = Math.max(max, count);
-        return max;
+        return Math.max(max, count);
     }
 }
