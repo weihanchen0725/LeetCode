@@ -1,5 +1,5 @@
 class Solution {
-    public int findCenter(int[][] e) {
-        return e[0][0] == e[1][0] || e[0][0] == e[1][1] ? e[0][0] : e[0][1];
+    public int findCenter(int[][] edges) {
+        return edges[0][0] == edges[1][0] || edges[0][0] == edges[1][1] ? edges[0][0] : edges[0][1];
     }
 }
