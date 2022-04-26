@@ -6,7 +6,7 @@ class Solution {
             counts[t[1]]++;
         }
         for(int index = 1; index < counts.length; index++)
-            if(counts[index] == n-1)
+            if(counts[index] == n-1) 
                 return index;
         return -1;
     }
