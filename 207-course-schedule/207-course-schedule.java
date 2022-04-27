@@ -13,13 +13,14 @@ class Solution {
         int[] visited = new int[numCourses];
         for(int index = 0; index < visited.length; index++){
             if(visited[index] != 1){
-                if(cycle(map, visited, index))
+                if(cycle(map, visited, index)){
                     return false;
+                }
             }
         }
         return true;
     }
-    public boolean cycle(ArrayList<ArrayList<Integer>> map, int[] visited, int index){
+    private boolean cycle(ArrayList<ArrayList<Integer>> map, int[] visited, int index){
         if(visited[index] != 0) return visited[index] == -1;
         visited[index] = -1;
         ArrayList<Integer> must = map.get(index);
