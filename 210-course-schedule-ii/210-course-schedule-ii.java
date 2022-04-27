@@ -1,54 +1,38 @@
 class Solution {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
-        List<List<Integer>> dependency = new ArrayList<>();
-        
-        for (int i = 0; i < numCourses; i++) {
-            dependency.add(new ArrayList<>());
+        List<List<Integer>> map = new ArrayList<>();
+        for(int index = 0; index < numCourses; index++){
+            map.add(new ArrayList<>());
         }
-        for (int[] course: prerequisites) {
-            dependency.get(course[1]).add(course[0]);
+        for(int[] course : prerequisites){
+            map.get(course[1]).add(course[0]);
         }
-        
-        boolean[] visited = new boolean[numCourses];
         boolean[] checked = new boolean[numCourses];
-        Stack<Integer> courses = new Stack<>();
-        for (int i = 0; i < numCourses; i++) {
-            if (dfs(dependency, checked, visited, i, courses)) {
+        boolean[] visited = new boolean[numCourses];
+        Stack<Integer> stack = new Stack<>();
+        for(int index = 0; index < numCourses; index++){
+            if(dfs(map, checked, visited, index, stack)){
                 return new int[0];
             }
         }
-        
         int[] results = new int[numCourses];
-        for (int i = 0; i < numCourses; i++) {
-            results[i] = courses.pop();
+        for(int index = 0; index < results.length; index++){
+            results[index] = stack.pop();
         }
         return results;
     }
-    
-    private boolean dfs(List<List<Integer>> dependency, 
-                        boolean[] checked, 
-                        boolean[] visited, 
-                        int cur,
-                        Stack<Integer> courses) {
-        if (visited[cur]) {
-            return true;
-        }
-        
-        if (checked[cur]) {
-            return false;
-        }
-        
-        visited[cur] = true;
-        
-        for (int nextCourse: dependency.get(cur)) {
-            if (dfs(dependency, checked, visited, nextCourse, courses)) {
+    public boolean dfs(List<List<Integer>> map, boolean[] checked, boolean[] visited, int index, Stack<Integer> stack){
+        if(visited[index]) return true;
+        if(checked[index]) return false;
+        visited[index] = true;
+        for(int nextCourse : map.get(index)){
+            if(dfs(map, checked, visited, nextCourse, stack)){
                 return true;
             }
         }
-        
-        visited[cur] = false;
-        checked[cur] = true;
-        courses.add(cur);
+        visited[index] = false;
+        checked[index] = true;
+        stack.add(index);
         return false;
     }
 }
